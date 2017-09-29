@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Friends</title>
+	<style type="text/css">
+		table{
+			background-color: grey;
+			border: 1px solid black;
+		}
+		th {
+			padding: 5px;
+		}
+		tr {
+			margin: 15px;
+			background-color: white;
+		}
+		td{
+			padding: 8px;
+		}
+
+	</style>
+</head>
+<body>
+	<h1>Hello, {{ user.alias }}!</h1>
+	<p><a href="{% url 'logout' %}">Logout</a></p>
+	<h3>Here is the list of your friends:</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>Alias</th>
+				<th>Action</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			{% if friends %}
+				{% for friend in friends %}
+					<tr>
+						<td>{{ friend.alias }}</td>
+						<td>
+							<p><a href="{% url 'show' id=friend.id %}">View Profile</a> <a href="{% url 'remove' id=friend.id %}">Remove as Friend</a></p>
+						</td>
+						
+					</tr>
+				{% endfor %}
+				{% else %}
+					<p>Currently there are no friends. Sorry!</p>
+				{% endif %}
+		</tbody>
+	</table>
+	<br>
+	<h3>Other Users not on your friend's list:</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>Alias</th>
+				<th>Action</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			{% if peeps %}
+				{% for peep in peeps %}
+					<tr>
+						<td><a href="{% url 'show' id=peep.id %}">{{peep.alias }}</a></td>
+						<td>
+							<p><a href="{% url 'add' id=peep.id %}"><button>Add as Friend</button></a></p>
+						</td>
+						
+					</tr>
+				{% endfor %}
+				{% else %}
+					<p>YOU HAVE ALL THE FRIENDS!!!!</p>
+				{% endif %}
+				
+		</tbody>
+	</table>
+
+</body>
+</html>

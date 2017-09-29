@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{friend.alias}}</title>
+</head>
+<body>
+	<p><a href="{% url 'home' %}">Home</a> | <a href="{% url 'logout' %}">Logout</a></p>
+	<h1>{{friend.alias}}'s Profile</h1>
+	<p>Name: {{ friend.name }}</p>
+	<p>Email: {{ friend.email }}</p>
+
+</body>
+</html>
